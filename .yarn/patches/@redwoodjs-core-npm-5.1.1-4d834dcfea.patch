@@ -1,0 +1,13 @@
+diff --git a/config/webpack.development.js b/config/webpack.development.js
+index 3cbf8d185efe5500fff6ad9352f4efbe9737d592..3d639e0f4ae54b882e86fce47f6f1c3929809053 100644
+--- a/config/webpack.development.js
++++ b/config/webpack.development.js
+@@ -16,7 +16,7 @@ const getProxyConfig = () => {
+     // Redwood only proxies absolute paths.
+     return {
+       [apiUrl]: {
+-        target: `${process.env.RWJS_DEV_API_URL ?? 'http://[::1]'}:${port}`,
++        target: `${process.env.RWJS_DEV_API_URL ?? 'http://localhost'}:${port}`,
+         pathRewrite: {
+           // Eg: Rewrite `/.netlify/functions/graphql` to `/graphql`, which the api-server expects
+           [`^${escapeRegExp(apiUrl)}`]: '',
