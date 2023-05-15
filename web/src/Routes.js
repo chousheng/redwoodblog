@@ -12,9 +12,11 @@ import { Router, Route, Set } from '@redwoodjs/router'
 import BlogLayout from 'src/layouts/BlogLayout'
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 
+import { useAuth } from './auth'
+
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={ScaffoldLayout} title="Posts" titleTo="posts" buttonLabel="New Post" buttonTo="newPost">
         <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
         <Route path="/admin/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
