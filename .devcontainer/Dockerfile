@@ -5,4 +5,4 @@ FROM mcr.microsoft.com/devcontainers/javascript-node:0-18
 
 # Install vim
 RUN apt-get -y update && \
-    apt-get -y install vim ripgrep
+    apt-get -y install vim ripgrep sqlite3
