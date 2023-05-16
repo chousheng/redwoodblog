@@ -15,5 +15,6 @@
   "debug.toolBarLocation": "docked",
   "terminal.integrated.env.linux": {
     "RWJS_DEV_API_URL": "http://localhost" // Fix GraphQL proxy
-},
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
