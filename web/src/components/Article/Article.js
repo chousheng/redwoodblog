@@ -4,12 +4,12 @@ const Article = ({ article }) => {
   return (
     <article>
       <header>
-        <h2>
+        <h2 className="text-xl font-semibold text-blue-700">
           <Link to={routes.article({ id: article.id })}>{article.title}</Link>
         </h2>
       </header>
-      <div>{article.body}</div>
-      <div>Posted at: {article.createdAt}</div>
+      <div className="mt-2 font-light text-gray-900">{article.body}</div>
+      {/* <div>Posted at: {article.createdAt}</div> */}
     </article>
   )
 }
