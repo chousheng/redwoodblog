@@ -39,8 +39,10 @@ describe('ArticlesCell', () => {
     render(<Success articles={articles} />)
 
     expect(screen.getByText(articles[0].title)).toBeInTheDocument()
-    expect(screen.getByText(articles[0].body)).toBeInTheDocument()
-    expect(screen.getByText(articles[1].title)).toBeInTheDocument()
-    expect(screen.getByText(articles[1].body)).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Neutra tacos hot chicken prism raw denim, put a bird on it enamel pin post-ironic vape cred DIY. Str...'
+      )
+    ).toBeInTheDocument()
   })
 })

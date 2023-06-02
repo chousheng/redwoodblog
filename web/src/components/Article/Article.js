@@ -13,7 +13,6 @@ const Article = ({ article, summary = false }) => {
         </h2>
       </header>
       <div className="mt-2 font-light text-gray-900">
-        {article.body}
         {summary ? truncate(article.body, 100) : article.body}
       </div>
       {/* <div>Posted at: {article.createdAt}</div> */}
