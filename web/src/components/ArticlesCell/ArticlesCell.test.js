@@ -1,4 +1,4 @@
-import { render, screen } from '@redwoodjs/testing/web'
+import { render, screen, within } from '@redwoodjs/testing/web'
 
 import { Loading, Empty, Failure, Success } from './ArticlesCell'
 import { standard } from './ArticlesCell.mock'
@@ -37,12 +37,15 @@ describe('ArticlesCell', () => {
   it('renders Success successfully', async () => {
     const articles = standard().articles
     render(<Success articles={articles} />)
+    articles.forEach((article) => {
+      const truncatedBody = article.body.substring(0, 10)
+      const matchedBody = screen.getByText(truncatedBody, { exact: false })
+      const ellipsis = within(matchedBody).getByText('...', { exact: false })
 
-    expect(screen.getByText(articles[0].title)).toBeInTheDocument()
-    expect(
-      screen.getByText(
-        'Neutra tacos hot chicken prism raw denim, put a bird on it enamel pin post-ironic vape cred DIY. Str...'
-      )
-    ).toBeInTheDocument()
+      expect(screen.getByText(article.title)).toBeInTheDocument()
+      expect(screen.queryByText(article.body)).not.toBeInTheDocument()
+      expect(matchedBody).toBeInTheDocument()
+      expect(ellipsis).toBeInTheDocument()
+    })
   })
 })
