@@ -1,8 +1,9 @@
 import Comment from 'src/components/Comment'
 
+// $postId is passed in by redwood automatically
 export const QUERY = gql`
-  query CommentsQuery {
-    comments {
+  query CommentsQuery($postId: Int!) {
+    comments(postId: $postId) {
       id
       name
       body
