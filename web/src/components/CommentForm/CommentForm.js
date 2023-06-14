@@ -1,10 +1,40 @@
-import { Form, Label, TextField, TextAreaField, Submit } from '@redwoodjs/forms'
+import {
+  Form,
+  FormError,
+  Label,
+  TextField,
+  TextAreaField,
+  Submit,
+} from '@redwoodjs/forms'
+import { useMutation } from '@redwoodjs/web'
+
+const CREATE = gql`
+  mutation CreateCommentMutation($input: CreateCommentInput!) {
+    createComment(input: $input) {
+      id
+      name
+      body
+      createdAt
+    }
+  }
+`
 
 const CommentForm = () => {
+  const [createComment, { loading, error }] = useMutation(CREATE)
+
+  const onSubmit = (input) => {
+    createComment({ variables: { input } })
+  }
+
   return (
     <div>
       <h3 className="text-lg font-light text-gray-600">Leave a Comment</h3>
-      <Form className="mt-4 w-full">
+      <Form className="mt-4 w-full" onSubmit={onSubmit}>
+        <FormError
+          error={error}
+          titleClassName="font-semibold"
+          wrapperClassName="bg-red-100 text-red-900 text-sm p-3 rounded"
+        />
         <Label name="name" className="block text-sm uppercase text-gray-600">
           Name
         </Label>
@@ -26,7 +56,10 @@ const CommentForm = () => {
           validation={{ required: true }}
         />
 
-        <Submit className="mt-4 block rounded bg-blue-500 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white disabled:opacity-50">
+        <Submit
+          disabled={loading}
+          className="mt-4 block rounded bg-blue-500 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-white disabled:opacity-50"
+        >
           Submit
         </Submit>
       </Form>
