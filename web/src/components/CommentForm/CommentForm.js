@@ -8,6 +8,8 @@ import {
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
+import { QUERY as CommentsQuery } from 'src/components/CommentsCell'
+
 const CREATE = gql`
   mutation CreateCommentMutation($input: CreateCommentInput!) {
     createComment(input: $input) {
@@ -20,7 +22,9 @@ const CREATE = gql`
 `
 
 const CommentForm = ({ postId }) => {
-  const [createComment, { loading, error }] = useMutation(CREATE)
+  const [createComment, { loading, error }] = useMutation(CREATE, {
+    refetchQueries: [{ query: CommentsQuery }],
+  })
 
   const onSubmit = (input) => {
     createComment({ variables: { input: { postId, ...input } } })
