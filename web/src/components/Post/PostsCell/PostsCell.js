@@ -2,9 +2,10 @@ import { Link, routes } from '@redwoodjs/router'
 
 import Posts from 'src/components/Post/Posts'
 
+// Rename adminPosts result as posts
 export const QUERY = gql`
   query FindPosts {
-    posts {
+    posts: adminPosts {
       id
       title
       body
