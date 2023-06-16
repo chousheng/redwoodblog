@@ -26,7 +26,7 @@ const POSTS = [
     id: 3,
     title: 'What is the meaning of life?',
     body: 'Meh waistcoat succulents umami asymmetrical, hoodie post-ironic paleo chillwave tote bag. Trust fund kitsch waistcoat vape, cray offal gochujang food truck cloud bread enamel pin forage. Roof party chambray ugh occupy fam stumptown. Dreamcatcher tousled snackwave, typewriter lyft unicorn pabst portland blue bottle locavore squid PBR&B tattooed.',
-    userId: 1,
+    userId: 2,
   },
 ]
 
@@ -41,6 +41,22 @@ export default async () => {
       hashedPassword:
         'ad9563042fe9f154419361eeeb775d8a12f3975a3722953fd8e326dd108d5645',
       salt: '1c99de412b219e9abf4665293211adce',
+      roles: 'admin',
+    },
+    update: {},
+  })
+
+  // create a moderator user
+  await db.user.upsert({
+    where: { id: 2 },
+    create: {
+      id: 2,
+      name: 'Hello Mod',
+      email: 'moderator@moderator.com',
+      hashedPassword:
+        'ad9563042fe9f154419361eeeb775d8a12f3975a3722953fd8e326dd108d5645',
+      salt: '1c99de412b219e9abf4665293211adce',
+      roles: 'moderator',
     },
     update: {},
   })
