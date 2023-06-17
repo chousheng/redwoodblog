@@ -21,5 +21,8 @@
   },
   "remoteEnv": {
     "TZ": "${localEnv:TZ:US/Pacific}"
-  }
+  },
+  "hostRequirements": {
+    "memory": "8gb" // Using 4gb would cause crash on GitHub Codespaces
+ }
 }
